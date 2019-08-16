@@ -16,6 +16,7 @@
   输出: [1, 0,0,0]
   解释: 输入数组表示数字 1000
   
+  方法一
   ```js
   const plusOne = function(digits) {
 	let length = digits.length;
@@ -30,4 +31,7 @@
 	}
 	return digits;
 };
+
+方法二：
+https://leetcode-cn.com/problems/plus-one/solution/shu-zi-yue-jie-ji-suan-by-es-7/
   ```
