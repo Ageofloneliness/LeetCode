@@ -31,7 +31,8 @@
 	}
 	return digits;
 };
+```
 
 方法二：
-https://leetcode-cn.com/problems/plus-one/solution/shu-zi-yue-jie-ji-suan-by-es-7/
-  ```
+> 将数组转化为数字，+1后，再转化为数组
+`(parseInt(digits.join("")) + 1).toString().split("").map(Number)`
