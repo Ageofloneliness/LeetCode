@@ -41,7 +41,9 @@ const moveZeroes = function(nums) {
 ```
 /**
  * 283.移动零
- * 将后面的非0元素赋值给前面的0，index为边界，前面的元素为非0元素，后面的元素为0
+ * 题目的关键是原地替换，而不消耗额外的空间，即空间复杂度要在O（1）。
+ * 因此我们采用经典的双指针来解决，现实遍历数组将非0的元素依次存数组中。
+ * 循环结束后看两个指针差多少，即补足0即可
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
