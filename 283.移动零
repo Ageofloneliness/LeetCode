@@ -46,18 +46,17 @@ const moveZeroes = function(nums) {
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 const moveZeroes = function(nums) {
-	const max = nums.length
+  const max = nums.length
   let index = 0
   for (let i = 0; i < max; i++) {
     if (nums[i] !== 0) {
-			// 将后面的非0元素赋值给前面的0，index为边界，前面的元素为非0元素，后面的元素为0
+      // 将后面的非0元素赋值给前面的0，index为边界，前面的元素为非0元素，后面的元素为0
       nums[index] = nums[i];
       index++;
     }
   }
   for (;index < max; index++) {
     nums[index] = 0
-	}
-	console.log(nums)
+  }
 };
 ```
