@@ -1,1 +1,2 @@
-#### LeetCode 算法
+#### LeetCode 算法 JavaScript 版
+
