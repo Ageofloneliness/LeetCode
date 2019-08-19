@@ -1,0 +1,42 @@
+387. 字符串中的第一个唯一字符
+给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1
+- 注意事项：您可以假定该字符串只包含小写字母。
+
+s = "leetcode"
+返回 0
+
+s = "loveleetcode",
+返回 2
+
+方法一：hash
+/**
+ * 387.字符串中的第一个唯一字符
+ * @param {string} s
+ * @return {number}
+ */
+const firstUniqChar = function(s) {
+	const obj = {};
+	for (let i = 0; i < s.length; i++) {
+		obj[s[i]] = obj[s[i]] !== undefined ? obj[s[i]] + 1 : 1;
+	}
+	for (let i = 0; i < s.length; i++) {
+		if (obj[s[i]] === 1) 
+			return i;
+	}
+	return -1;
+};
+
+方法二：indexof lastIndexOf
+/**
+ * 387.字符串中的第一个唯一字符
+ * @param {string} s
+ * @return {number}
+ */
+const firstUniqChar = function (s) {
+	for (let i = 0; i < s.length; i++) {
+		if (s.indexOf(s[i]) === i && s.lastIndexOf(s[i]) === i) {
+			return i;
+		}
+	}
+	return -1;
+};
