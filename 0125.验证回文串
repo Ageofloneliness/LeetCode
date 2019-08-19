@@ -1,0 +1,24 @@
+0125.验证回文串
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+
+说明：本题中，我们将空字符串定义为有效的回文串
+
+输入: "A man, a plan, a canal: Panama"
+输出: true
+
+
+/**
+ * 0125.验证回文串
+ * @param {string} s
+ * @return {boolean}
+ */
+const isPalindrome = function(s) {
+	// 使用正则去除非字母数字；再转小写
+	s = s.replace(/[\W_]/g,'').toLowerCase();
+	// 折半遍历判断对应字符是否相等
+	for (let i = 0; i < s.length / 2; i++) {
+		if (s[i] !== s[s.length - 1 - i])
+			return false;
+	}
+	return true;
+};
