@@ -6,7 +6,8 @@
 输入: "A man, a plan, a canal: Panama"
 输出: true
 
-
+方法一：双指针
+```
 /**
  * 0125.验证回文串
  * @param {string} s
@@ -22,3 +23,20 @@ const isPalindrome = function(s) {
 	}
 	return true;
 };
+```
+
+
+方法二：将字符串反转，判断是否和原字符串相等
+```
+/**
+ * 0125.验证回文串
+ * @param {string} s
+ * @return {boolean}
+ */
+const isPalindrome = function(s) {
+  if(s === '') 
+    return true;
+  s = s.match(/\w/g);
+  return s.join('').toLowerCase() === s.reverse().join('').toLowerCase();
+};
+```
