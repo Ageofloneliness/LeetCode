@@ -1,7 +1,7 @@
 0242. (有效的字母异位词)[https://leetcode-cn.com/problems/valid-anagram/]
 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
 
-题目理解：
+题目解读：
   所谓的字母异位词，就是两个字符串长度相等，各个字母的个数相等，只是顺序不同
 
 说明:
@@ -17,3 +17,33 @@
   输入: s = "rat", t = "car"
   输出: false
   
+方法一：
+将字符串转数组，再sort排序后，再转字符串，判断两个字符串是否相等
+/**
+ * 0242.有效的字母异位词
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+const isAnagram = function(s, t) {
+	return [...s].sort().join("") === [...t].sort().join("")
+};
+
+方法二：hash表
+/**
+ * 0242.有效的字母异位词
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+const isAnagram = function(s, t) {
+	if (s.length !== t.length) 
+		return false;
+  const obj = {};
+  for (let i = 0; i < s.length; i++) {
+    obj[s.charAt(i)] ? obj[s.charAt(i)]++ : (obj[s.charAt(i)] = 1);
+    obj[t.charAt(i)] ? obj[t.charAt(i)]-- : (obj[t.charAt(i)] = -1);
+	}
+	// 如果是字母异位词，hasb表中的每个字符对应的个数都应该是0
+	return Object.keys(obj).some(key => obj[key] !== 0);
+};
