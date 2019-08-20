@@ -76,3 +76,5 @@ const dominantIndex = function(nums) {
 	return nums[maxIndex] >= nums[lessIndex] * 2 ? maxIndex : -1;
 };
 ```
+
+方法三：深拷贝一份数组，排序，找到最大值和次最大值再比较，满足条件后，再去原数组indexOf()索引
