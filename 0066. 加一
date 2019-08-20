@@ -20,16 +20,14 @@
   ```js
   const plusOne = function(digits) {
 	let length = digits.length;
-	// 数组最后一个索引
+	// 从数组最后+1
 	let index = length - 1;
 	digits[index]++;
-	if (digits[index] === 10) {
-		while(digits[index] === 10) {
-			digits[index] = 0;
-			index === 0 ? digits.unshift(1) : digits[--index]++;			
-		}
+	while(digits[index] === 10) {
+		digits[index] = 0;
+		index === 0 ? digits.unshift(1) : digits[--index]++;			
 	}
-	return digits;
+	return digits; 
 };
 ```
 
