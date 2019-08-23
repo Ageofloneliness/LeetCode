@@ -1,0 +1,130 @@
+
+
+
+```
+function MyLinkedList() {
+  // 节点
+  function Node(val) {
+    this.val = val; // 当前节点的元素
+    this.next = null; // 下一个节点指针
+  }
+  let length = 0; // 链表的长度
+  let head = null; // 链表的头部节点
+
+  // 得到指定index的值
+  this.get = function (position) {
+    if (position < 0 || position >= length) {
+      // 越界
+      return -1;
+    }
+    else {
+      let index = 0;
+      let current = head;
+      // 从头开始，循环找到位置要插入位置的节点current
+      while (index++ < position) {
+        previous = current;
+        current = current.next;
+      }
+      return current.val;
+    }
+  };
+
+  this.addAtHead = function (val) {
+    let node = new Node(val);
+    // 判断是否为空链表
+    if (head === null) {
+      head = node;
+    }
+    else {
+      head = { val, next: head };
+    }
+    length++;
+  };
+
+  // 向链表尾部添加一个新的节点
+  this.addAtTail = function (val) {
+    let node = new Node(val);
+    // 判断是否为空链表
+    if (head === null) {
+      // 是空链表，就把当前节点作为头部节点
+      head = node;
+    }
+    else {
+      let current = head;
+      // 从 head 开始一直找到最后一个 node
+      while (current.next) {
+        // 后面还有 node
+        current = current.next;
+      }
+      // 把最后一个节点的 next 指针 指向 新加的节点
+      current.next = node;
+    }
+    // 链表的长度加 1
+    length++;
+  };
+
+  // 向链表特定位置插入一个新节点
+  this.addAtIndex = function (position, val) {
+    if (position <= 0) {
+      this.addAtHead(val);
+    }
+    else if (position === length) {
+      this.addAtTail(val);
+    }
+    else if(position > 0 && position < length) {
+      // 要插入的节点
+      let node = new Node(val);
+      let index = 0;
+      let current = head;
+      let previous;
+      // 从头开始，循环找到位置要插入位置的节点current
+      while (index++ < position) {
+        previous = current;
+        current = current.next;
+      }
+      // 把前一个节点的指针指向新节点，新节点的指针指向当前节点，保持连接性
+      node.next = current;
+      previous.next = node;
+      length++;
+    }
+  };
+
+  // 从链表的特定位置移除一项
+  this.deleteAtIndex = function (position) {
+    // 检查越界
+    if (position > -1 && position < length) {
+      if (position === 0) {
+        head = head.next;
+      }
+      else {
+        let current = head;
+        let index = 0;
+        let previous;
+        // 从头开始，循环找到位置
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        // 把当前节点的 next 指针 指向 当前节点的 next 指针，即是 删除了当前节点
+        previous.next = current.next;
+      }
+      length--;
+    }
+  };
+}
+
+const myLinkedList = new MyLinkedList();
+myLinkedList.addAtHead(0);
+myLinkedList.addAtIndex(1, 9);
+myLinkedList.addAtIndex(1, 5);
+myLinkedList.addAtTail(7);
+myLinkedList.addAtHead(1);
+myLinkedList.addAtIndex(5, 8);
+myLinkedList.addAtIndex(5,2);
+myLinkedList.addAtIndex(3,0);
+myLinkedList.addAtTail(1);
+myLinkedList.addAtTail(0);
+myLinkedList.deleteAtIndex(6);
+
+
+```
