@@ -1,0 +1,30 @@
+(0136.只出现一次的数字)[https://leetcode-cn.com/problems/single-number/]
+
+方法一：hash集合
+```
+const singleNumber = function (nums) {
+  let hashSet = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (hashSet[nums[i]])
+      hashSet[nums[i]]++;
+    else
+      hashSet[nums[i]] = 1;
+  }
+  for (let key in hashSet) {
+    if (hashSet[key] === 1)
+      return key;
+  }
+};
+```
+
+方法二：异或操作
+```
+const singleNumber = function (nums) {
+	let ans;
+	for (let i = 0; i < nums.length; i++) {
+		ans ^= nums[i];
+	}
+	return ans;
+  // return nums.reduce((sum, cur) => sum ^ cur, 0)
+};
+```
