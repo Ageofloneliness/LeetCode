@@ -128,3 +128,148 @@ myLinkedList.deleteAtIndex(6);
 
 
 ```
+
+
+```
+/**
+ * Initialize your data structure here.
+ */
+const MyLinkedList = function() {
+  this.head = null;
+  this.tail = null;
+  this.len = 0;
+};
+
+/**
+ * Get the value of the index-th node in the linked list. If the index is invalid, return -1.
+ * @param {number} index
+ * @return {number}
+ */
+MyLinkedList.prototype.get = function(index) {
+  if (index < 0 || index >= this.len) {
+    return -1;
+  }
+  let current = this.head;
+  let pos = 0;
+  while (current.next && pos < index) {
+    current = current.next;
+    pos ++;
+  }
+  return current.val;
+};
+
+/**
+ * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtHead = function(val) {
+  // 新节点
+  const node = {
+    val,
+    next: this.head,
+  };
+  // 新节点赋值为头节点
+  this.head = node;
+  // 如果是没有尾节点(空链表),头节点和尾节点相同(只执行一次)
+  if (!this.tail) {
+    this.tail = node;
+  }
+  this.len ++;
+};
+
+/**
+ * Append a node of value val to the last element of the linked list.
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtTail = function(val) {
+  // 新节点
+  const node = { val, next: null };
+  // 新节点赋值为尾节点
+  this.tail.next = node;
+  // 保存新的尾节点
+  this.tail = node;
+   // 如果是没有头节点(空链表),头节点和尾节点相同(只执行一次)
+  if (!this.head) {
+    this.head = node;
+  }
+  this.len ++;
+};
+
+/**
+ * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
+ * @param {number} index
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtIndex = function(index, val) {
+  if (index > this.len) { return; }
+  if (index <= 0) { return this.addAtHead(val); }
+  if (index === this.len) { return this.addAtTail(val) }
+
+  let current = this.head;
+  let pos = 0;
+  while (current.next && pos < index - 1) {
+    current = current.next;
+    pos ++;
+  }
+  const nextnext = current.next;
+  current.next = { val, next: nextnext }
+  this.len++;
+};
+
+/**
+ * Delete the index-th node in the linked list, if the index is valid.
+ * @param {number} index
+ * @return {void}
+ */
+MyLinkedList.prototype.deleteAtIndex = function(index) {
+  if (index < 0 || index > this.len - 1) { return }
+  let current = this.head;
+  let pos = 0;
+  this.len --;
+  if (index === 0) {
+    this.head = this.head.next;
+    if (!this.head) {
+      this.tail = null;
+    }
+    return;
+  }
+  while (current.next && pos < index - 1) {
+    current = current.next;
+    pos ++;
+  }
+  current.next = current.next.next;
+  if (!current.next) {
+    this.tail = current;
+  }
+};
+
+MyLinkedList.prototype.display = function() {
+  let current = this.head;
+  const arr = [];
+  if (this.head) {
+    while (current && current.next) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    arr.push(current.val);
+  }
+  console.info(arr);
+}
+
+const myLinkedList = new MyLinkedList();
+
+myLinkedList.addAtHead(0);
+// myLinkedList.addAtIndex(1, 9);
+// myLinkedList.addAtIndex(1, 5);
+// myLinkedList.addAtTail(7);
+myLinkedList.addAtHead(1);
+// myLinkedList.addAtIndex(5, 8);
+// myLinkedList.addAtIndex(5,2);
+// myLinkedList.addAtIndex(3,0);
+// myLinkedList.addAtTail(1);
+// myLinkedList.addAtTail(0);
+// myLinkedList.deleteAtIndex(6);
+```
