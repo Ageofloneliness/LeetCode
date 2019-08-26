@@ -1,0 +1,31 @@
+[0219.存在重复元素 II](https://leetcode-cn.com/problems/contains-duplicate-ii/)
+
+方法一：暴力双循环
+```
+const containsNearbyDuplicate = function(nums, k) {
+  const length = nums.length;
+  for (let i = 0; i < length; i++) {
+    for (let j = i + 1; j < length; j++) {
+      if (nums[i] === nums[j] && Math.abs(i - j) <= k)
+        return true;
+    }
+  }
+  return false;
+};
+
+```
+
+方法二：hash表
+```
+const containsNearbyDuplicate = function (nums, k) {
+  const hashMap = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    // i是递增的，一定比前面的大，无需取绝对值
+    if (hashMap.has(nums[i]) && i - hashMap.get(nums[i]) <= k) {
+      return true;
+    }
+    hashMap.set(nums[i], i);
+  }
+  return false;
+};
+```
